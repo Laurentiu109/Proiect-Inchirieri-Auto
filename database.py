@@ -74,29 +74,29 @@ class DataBase:
             reservation_db["data_start"], reservation_db["data_end"], reservation_db["client_id"], reservation_db["masina_id"]))
         self.conn.commit()
 
-    # def read_cars(self):
-    #     cur = self.conn.cursor()
+    def read_cars(self):
+        cur = self.conn.cursor()
 
-    #     rows = cur.execute("SELECT * FROM masini")
+        rows = cur.execute("SELECT * FROM masini")
 
-    #     row_list = list(rows)
+        row_list = list(rows)
 
-    #     for i in row_list:
-    #         print(
-    #             f"Id_masina: {i[0]} --- Marca: {i[1]} --- Model: {i[2]} --- Numar inmatriculare {i[6]}")
-    #      self.conn.commit()
+        for i in row_list:
+            print(
+                f"Id_masina: {i[0]} --- Marca: {i[1]} --- Model: {i[2]} --- Numar inmatriculare {i[6]}")
+        self.conn.commit()
 
-        # def read_client(self):
-    #     cur = self.conn.cursor()
+    def read_client(self):
+        cur = self.conn.cursor()
 
-    #     rows = cur.execute("SELECT * FROM clienti")
+        rows = cur.execute("SELECT * FROM clienti")
 
-    #     row_list = list(rows)
+        row_list = list(rows)
 
-    #     for i in row_list:
-    #         print(
-    #             f"Id_client: {i[0]} --- Nume: {i[1]} --- Prenume: {i[2]}")
-    #      self.conn.commit()
+        for i in row_list:
+            print(
+                f"Id_client: {i[0]} --- Nume: {i[1]} --- Prenume: {i[2]}")
+        self.conn.commit()
 
     def read_reservations(self):
         cur = self.conn.cursor()

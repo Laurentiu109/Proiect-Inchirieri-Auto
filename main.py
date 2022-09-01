@@ -18,7 +18,12 @@ repo.client_table_db()
 repo.car_table_db()
 repo.reservations_table_db()
 
-""""""
+
+def enter():
+    input("Apasa ENTER pentru a reveni la meniul principal!")
+
+
+"""Validate if the car id is booked in the same period of time by 2 different clients"""
 
 
 def validate_reservation(reservation):
@@ -41,13 +46,15 @@ while True:
             car1 = Car(car_input)
             repo.add_car_db(car_input)
             print("Masina a fost adaugata cu succes.\n")
-            input("Apasa ENTER pentru a reveni la meniul principal.")
+            repo.read_cars()
+            enter()
         case '2':
             user_input = Menu.add_client_menu()
             user1 = Client(user_input)
             repo.add_client_db(user_input)
             print("Clientul a fost adaugat cu succes.\n")
-            input("Apasa ENTER pentru a reveni la meniul principal.")
+            repo.read_client()
+            enter()
         case '3':
             try:
                 rezervare_input = Menu.add_rezervari_menu()
@@ -60,19 +67,24 @@ while True:
             except sqlite3.IntegrityError as err:
                 print('Eroare in db!')
             finally:
-                input("Apasa ENTER pentru a reveni la meniul principal.")
+                enter()
         case '4':
-            # repo.read_reservations()
-            # repo.show_car_number_plate()
-            number_plate = input("Numar de inmatriculare: ")
-            repo.show_car_number_plate(number_plate)
-            input("Apasa ENTER pentru a reveni la meniul principal.")
+            n = int(input(
+                "1.Vezi toate rezervarile\n2.Vezi rezervarile dupa numarul de inmatriculare\nAlege optiunea:"))
+            if n == 1:
+                repo.read_reservations()
+            elif n == 2:
+                number_plate = input("Numar de inmatriculare: ")
+                repo.show_car_number_plate(number_plate)
+            else:
+                print("Optiune inexistenta!")
+            enter()
         case '5':
             reservation_id = input(
                 "Id-ul rezervarii pe care vrei sa o anulezi: ")
             repo.delete_reservation(reservation_id)
             print("Rezervarea a fost anulata!!\n")
-            input("Apasa ENTER pentru a reveni la meniul principal.\n")
-        case _:     # else
+            enter()
+        case _:
 
             print("Optiune inexistenta!")
