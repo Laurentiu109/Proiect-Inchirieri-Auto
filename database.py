@@ -128,3 +128,10 @@ class DataBase:
         self.conn.commit()
         row_list = list(rows)
         return row_list
+
+    def wrong_reservation(self, wrong_id):
+        cur = self.conn.cursor()
+        rows = cur.execute("SELECT * FROM rezervare WHERE id=?", (wrong_id, ))
+        self.conn.commit()
+        row_list = list(rows)
+        return row_list

@@ -82,8 +82,11 @@ while True:
         case '5':
             reservation_id = input(
                 "Id-ul rezervarii pe care vrei sa o anulezi: ")
-            repo.delete_reservation(reservation_id)
-            print("Rezervarea a fost anulata!!\n")
+            if (repo.wrong_reservation(reservation_id)):
+                repo.delete_reservation(reservation_id)
+                print("Rezervarea a fost anulata!!\n")
+            else:
+                print("Nu exista")
             enter()
         case _:
 
