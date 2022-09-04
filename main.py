@@ -23,7 +23,7 @@ def enter():
     input("Apasa ENTER pentru a reveni la meniul principal!")
 
 
-"""Validate if the car id is booked in the same period of time by 2 different clients"""
+"""Check if the car is booked in the same period of time by 2 different customers"""
 
 
 def validate_reservation(reservation):
@@ -38,7 +38,6 @@ def validate_reservation(reservation):
 while True:
     Menu.menu()
     option = Menu.read_option()
-    """ Acelasi principiu ca IF doar ca mai usor de citit si aplicat """
     match option:
         case '0': sys.exit()
         case '1':
@@ -75,7 +74,10 @@ while True:
                 repo.read_reservations()
             elif n == 2:
                 number_plate = input("Numar de inmatriculare: ")
-                repo.show_car_number_plate(number_plate)
+                if (repo.wrong_car_number_plate(number_plate)):
+                    repo.show_car_number_plate(number_plate)
+                else:
+                    print("Numarul de inmatriculare nu exista in lista de rezervari!")
             else:
                 print("Optiune inexistenta!")
             enter()
@@ -86,7 +88,7 @@ while True:
                 repo.delete_reservation(reservation_id)
                 print("Rezervarea a fost anulata!!\n")
             else:
-                print("Nu exista")
+                print("ID-ul introdus nu exista in lista de rezervari!")
             enter()
         case _:
 
